@@ -1,3 +1,5 @@
+from enum import Enum
+
 class LoggerTypes(Enum):
     ERROR = 3
     WARN = 2
