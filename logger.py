@@ -1,9 +1,9 @@
-from src.Color import Color
-from src.LoggerTypes import LoggerTypes
+from .src.Color import Color
+from .src.LoggerTypes import LoggerTypes
 
 class Logger:
     
-    def __init__(self, level = 4):
+    def __init__(self, level = 1):
         '''
         LEVEL : Type of log the logger will print to console
             
@@ -41,7 +41,7 @@ class Logger:
             self._write(Color.NONE, text)
 
     def _write(self, color="", text="", reset=True):
-        out = color + text
+        out = color + str(text)
         if reset:
             out += Color.RESET
         print(out)
