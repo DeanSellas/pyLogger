@@ -20,6 +20,7 @@ class Logger:
         self._errorColor = Color.RED
         self._warnColor = Color.YELLOW
         self._infoColor = Color.NONE
+        self._inputColor = Color.BLUE
 
 
     def setLevel(self, level):
@@ -54,11 +55,26 @@ class Logger:
         if self.level <= LoggerTypes.INFO.value:
             self._write(self._infoColor, "INFO | {}".format(text))
 
+    def Input(self, text):
+        print(self._inputColor)
+        inp = input(text)
+        out = "INPUT | {} {}".format(text, inp)
+        self._write(self._inputColor, out, toConsole=False)
+        return inp
+
     def Clear(self):
+        self.Info("Console Cleared")
         os.system('cls')
 
-    def _write(self, color="", text="", reset=True):
+    def _write(self, color="", text="", reset=True, toConsole=True, toFile=True):
         out = color + str(text)
+        
+        if toConsole:
+            print(out)
+
+        if toFile:
+            #TODO Implent log exporter
+            pass
+
         if reset:
-            out += Color.RESET
-        print(out)
+            print(Color.RESET)
