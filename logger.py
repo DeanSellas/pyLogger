@@ -16,7 +16,7 @@ class Logger:
             NONE = 0
         '''
         self.toFile = False
-        self.filePath = filePath
+        
         self.fileName = "{}_{}.txt".format("log", dt.now().strftime('%m%d%y'))        
         
         self.setLevel(level)
@@ -26,7 +26,7 @@ class Logger:
         self._infoColor = Color.NONE
         self._inputColor = Color.BLUE
 
-        self.toFile = self._fileChecks()
+        self.setPath(filePath)
 
     def _fileChecks(self):
         if self.filePath == "" or self.filePath == None:
@@ -56,6 +56,10 @@ class Logger:
             if types.value == level:
                 self.level = types.value
                 break
+    
+    def setPath(self, newPath):
+        self.filePath = newPath
+        self.toFile = self._fileChecks()
 
     def Error(self, text, ErrorType=None):
         if self.level <= LoggerTypes.ERROR.value:
