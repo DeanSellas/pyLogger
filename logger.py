@@ -94,8 +94,15 @@ class Logger:
             print(out)
 
         if self.toFile:
-            with open(os.path.join(self.filePath,self.fileName), 'a') as logFile:
+            with open(os.path.join(self.filePath,self.fileName), 'a', encoding='utf-8') as logFile:
                 logFile.write(text+'\n')
 
         if reset:
             print(Color.RESET, end="")
+
+    def csvWriter(self, fields, data):
+        import csv
+        with open(os.path.join(self.filePath, "output.csv"), mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(fields)
+            writer.writerows(data)
