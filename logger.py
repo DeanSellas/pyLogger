@@ -16,8 +16,8 @@ class Logger:
             NONE = 0
         '''
         self.toFile = False
-        
-        self.fileName = "{}_{}.txt".format("log", dt.now().strftime('%m%d%y'))        
+        self._LogTime = dt.now().strftime('%m%d%y')
+        self.fileName = "{}_{}.txt".format("log", self._LogTime)        
         
         self.setLevel(level)
 
@@ -102,7 +102,7 @@ class Logger:
 
     def csvWriter(self, fields, data):
         import csv
-        with open(os.path.join(self.filePath, "output.csv"), mode='w', newline='') as file:
+        with open(os.path.join(self.filePath, "output_{}.csv".format(self._LogTime)), mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(fields)
             writer.writerows(data)
