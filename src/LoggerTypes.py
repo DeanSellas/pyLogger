@@ -1,7 +1,8 @@
 from enum import Enum
 
 class LoggerTypes(Enum):
-    ERROR = 3
-    WARN = 2
-    INFO = 1
+    ERROR = 4
+    WARN = 3
+    INFO = 2
+    TRACE = 1
     NONE = 0

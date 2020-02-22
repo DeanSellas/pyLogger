@@ -44,13 +44,14 @@ class Logger:
         '''
         Sets Level of output.
 
-            ERROR = 3
-            WARNING = 2
-            INFO = 1
+            ERROR = 4
+            WARNING = 3
+            INFO = 2
+            TRACE = 1
             NONE = 0
         '''
-        if not (0 <= level <= 3):
-            self.Error("Level must be an integer between 0 and 3", ValueError)
+        if not (0 <= level <= 4):
+            self.Info("Level must be an integer between 0 and 4")
         
         for types in LoggerTypes:
             if types.value == level:
@@ -75,6 +76,10 @@ class Logger:
     def Info(self, text):
         if self.level <= LoggerTypes.INFO.value:
             self._write(self._infoColor, "INFO | {}".format(text))
+
+    def Trace(self, text):
+        if self.level <= LoggerTypes.TRACE.value:
+            self._write(self._infoColor, "TRACE | {}".format(text))
 
     def Input(self, text):
         print(self._inputColor)
