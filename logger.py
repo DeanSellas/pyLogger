@@ -105,9 +105,9 @@ class Logger:
         if reset:
             print(Color.RESET, end="")
 
-    def csvWriter(self, fields, data):
+    def csvWriter(self, customName, fields, data):
         import csv
-        with open(os.path.join(self.filePath, "output_{}.csv".format(self._LogTime)), mode='w', newline='') as file:
+        with open(os.path.join(self.filePath, "output_{}_{}.csv".format(customName, self._LogTime)), mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(fields)
             writer.writerows(data)
